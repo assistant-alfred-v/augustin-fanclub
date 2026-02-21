@@ -1,0 +1,156 @@
+@import "tailwindcss";
+
+:root {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #f1f5f9;
+  --bg-tertiary: #e2e8f0;
+  --accent-primary: #7c3aed;
+  --accent-secondary: #0891b2;
+  --accent-tertiary: #ec4899;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-accent: #6d28d9;
+  --success: #16a34a;
+  --gold: #d97706;
+  --card-bg: rgba(255, 255, 255, 0.8);
+  --card-border: rgba(203, 213, 225, 0.5);
+  --glow-color: rgba(124, 58, 237, 0.3);
+}
+
+[data-theme="dark"] {
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #12121a;
+  --bg-tertiary: #1a1a25;
+  --accent-primary: #8b5cf6;
+  --accent-secondary: #06b6d4;
+  --accent-tertiary: #f472b6;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-accent: #c4b5fd;
+  --success: #22c55e;
+  --gold: #fbbf24;
+  --card-bg: rgba(18, 18, 26, 0.8);
+  --card-border: rgba(100, 116, 139, 0.2);
+  --glow-color: rgba(139, 92, 246, 0.4);
+}
+
+[data-japan="true"] {
+  --accent-tertiary: #ef4444;
+}
+
+@theme inline {
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-bg-tertiary: var(--bg-tertiary);
+  --color-accent-primary: var(--accent-primary);
+  --color-accent-secondary: var(--accent-secondary);
+  --color-accent-tertiary: var(--accent-tertiary);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-accent: var(--text-accent);
+  --color-success: var(--success);
+  --color-gold: var(--gold);
+  --color-card-bg: var(--card-bg);
+  --color-card-border: var(--card-border);
+  --color-glow: var(--glow-color);
+  --font-orbitron: var(--font-orbitron);
+  --font-outfit: var(--font-outfit);
+  --font-jetbrains: var(--font-jetbrains);
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-outfit), system-ui, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-orbitron), system-ui, sans-serif;
+}
+
+code, pre, .mono {
+  font-family: var(--font-jetbrains), monospace;
+}
+
+.glass-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--card-border);
+  border-radius: 1rem;
+}
+
+.glass-card:hover {
+  box-shadow: 0 0 30px var(--glow-color);
+}
+
+.glow-text {
+  text-shadow: 0 0 20px var(--glow-color), 0 0 40px var(--glow-color);
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-tertiary) 100%);
+}
+
+.noise-overlay::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px var(--glow-color); }
+  50% { box-shadow: 0 0 40px var(--glow-color), 0 0 60px var(--glow-color); }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.animated-gradient {
+  background: linear-gradient(-45deg, var(--accent-primary), var(--accent-secondary), var(--accent-tertiary), var(--accent-primary));
+  background-size: 400% 400%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-secondary);
+}
